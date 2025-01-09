@@ -76,30 +76,9 @@ print("Modelo guardado como 'dqn_cartpole.zip'.")
 # Visualización del agente entrenado
 print("Probando el modelo entrenado...")
 
-# Crear el entorno con render_mode="human" para ver la simulación
 env = gym.make("CartPole-v1", render_mode="human")
-obs, _ = env.reset()  # Resetea el entorno y obtiene la observación inicial
+obs, _ = env.reset()
 done = False
-
-# Modificar parámetros del entorno (configuraciones internas)
-env.env.length = 1.0  # Longitud del palo (por defecto es 0.5)
-env.env.masscart = 2.0  # Masa del carrito (por defecto es 1.0)
-env.env.masspole = 0.1  # Masa del palo (por defecto es 0.1)
-env.env.total_mass = env.env.masscart + env.env.masspole  # Masa total
-env.env.tau = 0.02  # Tiempo de actualización (por defecto es 0.02)
-env.env.theta_threshold_radians = np.pi  # Ángulo máximo para el fallo (por defecto es 12 grados)
-
-# Configuración del ángulo inicial (en radianes)
-env.reset()  # Resetear el entorno
-env.env.state = [0.0, 0.0, np.pi/2, 0.0]  # Ángulo inicial y otras variables (x, velocidad, theta, velocidad angular)
-
-# Imprimir los valores de los parámetros para comprobar que se modificaron
-print("Longitud del palo:", env.env.length)
-print("Masa del carrito:", env.env.masscart)
-print("Masa del palo:", env.env.masspole)
-print("Ángulo máximo permitido (radianes):", env.env.theta_threshold_radians)
-
-# Ahora puedes proceder con el entrenamiento del agente, como en el código original
 
 
 while not done:
